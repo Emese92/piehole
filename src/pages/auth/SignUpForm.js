@@ -1,11 +1,47 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
-import { Col, Row, Card, Form, Button, Container } from "react-bootstrap";
+import {
+  Col,
+  Row,
+  Card,
+  Form,
+  Button,
+  Container,
+  Alert,
+} from "react-bootstrap";
+import axios from "axios";
 
 export const SignUpForm = () => {
+  const [signUpData, setSignUpData] = useState({
+    username: "",
+    password1: "",
+    password2: "",
+  });
+  const { username, password1, password2 } = signUpData;
+
+  const [errors, seterrors] = useState({});
+
+  const history = useHistory();
+  const handleChange = (event) => {
+    setSignUpData({
+      ...signUpData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      await axios.post("/dj-rest-auth/registration/", signUpData);
+      history.push("/signin");
+    } catch (err) {
+      seterrors(err.response?.data);
+    }
+  };
+
   return (
     <Container fluid>
       <Row className="d-flex justify-content-center align-items-center h-100">
@@ -20,7 +56,7 @@ export const SignUpForm = () => {
                 Please enter your username and password!
               </Card.Subtitle>
 
-              <Form className="w-100">
+              <Form className="w-100" onSubmit={handleSubmit}>
                 <Form.Group controlId="username">
                   <Form.Label className="d-none">Username</Form.Label>
                   <Form.Control
@@ -28,8 +64,15 @@ export const SignUpForm = () => {
                     type="text"
                     placeholder="Username"
                     name="username"
+                    value={username}
+                    onChange={handleChange}
                   />
                 </Form.Group>
+                {errors.username?.map((message, idx) => (
+                  <Alert className="small" variant="warning" key={idx}>
+                    {message}
+                  </Alert>
+                ))}
 
                 <Form.Group controlId="password1">
                   <Form.Label className="d-none">Password</Form.Label>
@@ -38,8 +81,15 @@ export const SignUpForm = () => {
                     type="password"
                     placeholder="Password"
                     name="password1"
+                    value={password1}
+                    onChange={handleChange}
                   />
                 </Form.Group>
+                {errors.password1?.map((message, idx) => (
+                  <Alert className="small" variant="warning" key={idx}>
+                    {message}
+                  </Alert>
+                ))}
 
                 <Form.Group controlId="password2">
                   <Form.Label className="d-none">Confirm Password</Form.Label>
@@ -48,8 +98,15 @@ export const SignUpForm = () => {
                     type="password"
                     placeholder="Confirm Password"
                     name="password2"
+                    value={password2}
+                    onChange={handleChange}
                   />
                 </Form.Group>
+                {errors.password2?.map((message, idx) => (
+                  <Alert className="small" variant="warning" key={idx}>
+                    {message}
+                  </Alert>
+                ))}
 
                 <Button
                   className={`${btnStyles.Button} ${btnStyles.Wide} `}
@@ -57,6 +114,11 @@ export const SignUpForm = () => {
                 >
                   Sign Up
                 </Button>
+                {errors.non_field_errors?.map((message, idx) => (
+                  <Alert className="small mt-3" variant="warning" key={idx}>
+                    {message}
+                  </Alert>
+                ))}
               </Form>
               <div>
                 <p className="small text-white-50 mb-0 mt-5 text-muted">
