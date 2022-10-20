@@ -1,0 +1,25 @@
+.Input {
+  background-color: transparent;
+  border: 1px solid white;
+  box-sizing: border-box;
+  border-radius: 5px;
+  color: white;
+  text-align: left;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+.Input:focus {
+  border-color: #ffc107;
+  background-color: transparent;
+  color: #ffffff;
+  box-shadow: 0 0 10px #ffc107;
+}
+.Header {
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 30px;
+  text-align: center;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #ffffff;
+}

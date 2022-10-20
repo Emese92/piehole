@@ -1,0 +1,28 @@
+.Button {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.9rem;
+    align-self: center;
+    border-radius: 5px;
+    border-color: white;
+    background-color: transparent;
+    padding: 4px 10px;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 30px;
+    min-width: 75px;
+  }
+  
+  .Button:hover {
+    opacity: 0.8;
+    border-color: transparent;
+    cursor: pointer;
+    background-color: #ffc107;
+    color: black;
+  }
+  
+  
+  .Wide {
+    padding: 10px 50px;
+    width: 100%;
+  }
