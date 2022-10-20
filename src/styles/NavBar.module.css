@@ -1,4 +1,11 @@
 .NavBar {
-    font-family: "Amatic SC", sans-serif;
-
+    font-family: "Amatic SC", cursive;
 }
+
+.NavLink {
+    padding: 5px;
+}
+
+.Active {
+    color: #ffc107;
+  }
