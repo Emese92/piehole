@@ -3,17 +3,83 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import logo from "../assets/logo.png";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
-import { useCurrentUser } from "../contexts/CurrentUserContext";
+import {
+  useCurrentUser,
+  useSetCurrentUser,
+} from "../contexts/CurrentUserContext";
+import Avatar from "./Avatar";
+import axios from "axios";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
-  const LoggedInIcons = <>{currentUser?.username}</>
+  const setCurrentUser = useSetCurrentUser();
+
+  const handleSignOut = async () => {
+    try {
+      await axios.post("dj-rest-auth/logout/");
+      setCurrentUser(null);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const LoggedInIcons = (
+    <>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/feed"
+      >
+        <i className="fas fa-stream"></i>
+        <br />
+        Feed
+      </NavLink>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/bookmarks"
+      >
+        <i className="fas fa-bookmark"></i>
+        <br />
+        Saved
+      </NavLink>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/recipes/create"
+      >
+        <i className="fas fa-plus-square"></i>
+        <br />
+        Add Recipe
+      </NavLink>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to={`/profiles/${currentUser?.profile_id}`}
+      >
+        <Avatar src={currentUser?.profile_image} height={30} />
+        <br />
+        Profile
+      </NavLink>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/"
+        onClick={handleSignOut}
+      >
+        <i className="fas fa-sign-out-alt"></i>
+        <br />
+        Sign out
+      </NavLink>
+    </>
+  );
+
   const loggedOutIcons = (
     <>
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
-        to="signin"
+        to="/signin"
       >
         <i className="fas fa-sign-in-alt"></i>
         <br />
@@ -22,7 +88,7 @@ const NavBar = () => {
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
-        to="signup"
+        to="/signup"
       >
         <i className="fas fa-user-plus"></i>
         <br />
@@ -48,7 +114,7 @@ const NavBar = () => {
           </NavLink>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ml-auto text-right">
+            <Nav className="ml-auto text-center">
               <NavLink
                 exact
                 className={styles.NavLink}
