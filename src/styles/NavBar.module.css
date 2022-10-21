@@ -1,5 +1,8 @@
 .NavBar {
     font-family: "Amatic SC", cursive;
+    letter-spacing: 1px;
+    color: #cfced3;
+
 }
 
 .NavLink {
