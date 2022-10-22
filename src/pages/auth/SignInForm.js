@@ -24,7 +24,7 @@ export const SignInForm = () => {
   });
   const { username, password } = signInData;
 
-  const [errors, seterrors] = useState({});
+  const [errors, setErrors] = useState({});
 
   const history = useHistory();
   const handleChange = (event) => {
@@ -41,7 +41,7 @@ export const SignInForm = () => {
       setCurrentUser(data.user);
       history.push("/");
     } catch (err) {
-      seterrors(err.response?.data);
+      setErrors(err.response?.data);
     }
   };
 
