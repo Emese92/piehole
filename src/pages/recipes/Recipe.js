@@ -8,6 +8,7 @@ import {
   Tooltip,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { axiosRes } from "../../api/axiosDefaults";
 import Avatar from "../../components/Avatar";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/Recipe.module.css";
@@ -29,10 +30,82 @@ const Recipe = (props) => {
     likes_count,
     comments_count,
     recipePage,
+    setRecipe,
   } = props;
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+
+  const handleLike = async () => {
+    try {
+      const { data } = await axiosRes.post("/likes/", { recipe: id });
+      setRecipe((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((recipe) => {
+          return recipe.id === id
+            ? {
+                ...recipe,
+                likes_count: recipe.likes_count + 1,
+                like_id: data.id,
+              }
+            : recipe;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleUnike = async () => {
+    try {
+      await axiosRes.delete(`/likes/${like_id}/`);
+      setRecipe((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((recipe) => {
+          return recipe.id === id
+            ? { ...recipe, likes_count: recipe.likes_count - 1, like_id: null }
+            : recipe;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleBookmark = async () => {
+    try {
+      const { data } = await axiosRes.post("/bookmarks/", { recipe: id });
+      setRecipe((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((recipe) => {
+          return recipe.id === id
+            ? {
+                ...recipe,
+                bookmark_id: data.id,
+              }
+            : recipe;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleRemoveBookmark = async () => {
+    try {
+      await axiosRes.delete(`/bookmarks/${bookmark_id}/`);
+      setRecipe((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((recipe) => {
+          return recipe.id === id
+            ? { ...recipe, bookmark_id: null }
+            : recipe;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Card>
@@ -52,11 +125,11 @@ const Recipe = (props) => {
                   <i className="far fa-bookmark" />
                 </OverlayTrigger>
               ) : bookmark_id ? (
-                <span onClick={() => {}}>
+                <span onClick={handleRemoveBookmark}>
                   <i className={`fas fa-bookmark ${styles.Heart}`} />
                 </span>
               ) : currentUser ? (
-                <span onClick={() => {}}>
+                <span onClick={handleBookmark}>
                   <i className={`far fa-bookmark ${styles.HeartOutline}`} />
                 </span>
               ) : (
@@ -75,11 +148,11 @@ const Recipe = (props) => {
                   <i className="far fa-heart" />
                 </OverlayTrigger>
               ) : like_id ? (
-                <span onClick={() => {}}>
+                <span onClick={handleUnike}>
                   <i className={`fas fa-heart ${styles.Heart}`} />
                 </span>
               ) : currentUser ? (
-                <span onClick={() => {}}>
+                <span onClick={handleLike}>
                   <i className={`far fa-heart ${styles.HeartOutline}`} />
                 </span>
               ) : (
@@ -131,8 +204,7 @@ const Recipe = (props) => {
           </Card.Text>
         )}
         <div className="text-center">
-
-          <Link  to={`/posts/${id}`}>
+          <Link to={`/posts/${id}`}>
             <i className="far fa-comments" />
           </Link>
           {comments_count}
