@@ -41,3 +41,12 @@
   padding: 10px 50px;
   width: 100%;
 }
+
+.Gray{
+  background-color: #B5AA99;
+}
+
+.Cancel{
+  color:black;
+  border: 1px gray solid;
+}
