@@ -37,3 +37,9 @@ i {
   vertical-align: middle;
 }
 
+.Input:focus {
+  border-color: #ffc107;
+  background-color: transparent;
+  box-shadow: 0 0 2px #ffc107;
+}
+

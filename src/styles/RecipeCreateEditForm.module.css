@@ -1,4 +1,6 @@
-
-.Container {
-    min-height: 343px;
-  }
+.Title {
+  font-size: larger;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: bold;
+}
