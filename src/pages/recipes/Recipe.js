@@ -195,8 +195,8 @@ const Recipe = (props) => {
         {ingredients && (
           <Card.Text>
             Ingredients:
-            <br />
-            {ingredients}
+            <ul><li>{ingredients}</li></ul>
+            
           </Card.Text>
         )}
         {steps && (
