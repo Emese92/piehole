@@ -97,9 +97,7 @@ const Recipe = (props) => {
       setRecipe((prevPosts) => ({
         ...prevPosts,
         results: prevPosts.results.map((recipe) => {
-          return recipe.id === id
-            ? { ...recipe, bookmark_id: null }
-            : recipe;
+          return recipe.id === id ? { ...recipe, bookmark_id: null } : recipe;
         }),
       }));
     } catch (err) {
@@ -164,6 +162,10 @@ const Recipe = (props) => {
                 </OverlayTrigger>
               )}
               {likes_count}
+              <Link to={`/recipes/${id}`}>
+                <i className="far fa-comments" />
+              </Link>
+              {comments_count}
             </span>
             {is_owner && recipePage && "..."}
           </div>
@@ -203,12 +205,6 @@ const Recipe = (props) => {
             <br /> {steps}
           </Card.Text>
         )}
-        <div className="text-center">
-          <Link to={`/posts/${id}`}>
-            <i className="far fa-comments" />
-          </Link>
-          {comments_count}
-        </div>
       </Card.Body>
     </Card>
   );
