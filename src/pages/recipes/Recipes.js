@@ -6,19 +6,23 @@ import { useLocation } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Recipe from "./Recipe";
 
-import NoResults from '../../assets/no_result.png'
-import { Container } from "react-bootstrap";
-import Asset from '../../components/Asset'
+import NoResults from "../../assets/no_result.png";
+import { Container, Form } from "react-bootstrap";
+import Asset from "../../components/Asset";
 
-function Recipes({message, filter = ""}) {
+function Recipes({ message, filter = "" }) {
   const [recipes, setRecipes] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
 
+  const [query, setQuery] = useState("");
+
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const { data } = await axiosReq.get(`/recipes/${filter}`);
+        const { data } = await axiosReq.get(
+          `/recipes/?${filter}search=${query}`
+        );
         setRecipes(data);
         setHasLoaded(true);
       } catch (err) {
@@ -26,11 +30,29 @@ function Recipes({message, filter = ""}) {
       }
     };
     setHasLoaded(false);
-    fetchRecipes();
-  }, [filter, pathname]);
+    const timer =setTimeout(() =>{
+        fetchRecipes();
+    }, 1000)
+    return () =>{
+        clearTimeout(timer)
+    }
+
+  }, [filter, query, pathname]);
 
   return (
     <>
+      <div>
+        <i className="fas fa-search" />
+        <Form onSubmit={(event) => event.preventDefault()}>
+          <Form.Control
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            type="text"
+            className="mr-sm-2"
+            placeholder="Search"
+          />
+        </Form>
+      </div>
       <Card className="bg-dark text-white">
         <Card.Img src="holder.js/100px270" alt="Card image" />
         <Card.ImgOverlay>
@@ -42,23 +64,23 @@ function Recipes({message, filter = ""}) {
           <Card.Text>Last updated 3 mins ago</Card.Text>
         </Card.ImgOverlay>
       </Card>
-      <Row xs={1} md={2} lg={3} className="g-3">
+      <Row xs={1} md={2} lg={3} className="g-3 ">
         <Col>
           {hasLoaded ? (
             <>
-              {recipes.results.length
-                ? recipes.results.map((recipe) => (
-                    <Recipe
-                      key={recipe.id}
-                      {...recipe}
-                      setRecipes={setRecipes}
-                    />
-                  ))
-                : <Container><Asset src={NoResults} message={message} /></Container> }
+              {recipes.results.length ? (
+                recipes.results.map((recipe) => (
+                  <Recipe key={recipe.id} {...recipe} setRecipes={setRecipes} />
+                ))
+              ) : (
+                <Container>
+                  <Asset src={NoResults} message={message} />
+                </Container>
+              )}
             </>
           ) : (
             <Container>
-                <Asset spinner />
+              <Asset spinner />
             </Container>
           )}
           <Card>
