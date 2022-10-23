@@ -163,7 +163,7 @@ const Recipe = (props) => {
               )}
               {likes_count}
               <Link to={`/recipes/${id}`}>
-                <i className="far fa-comments" />
+                <i className="far fa-comment" />
               </Link>
               {comments_count}
             </span>
@@ -178,28 +178,28 @@ const Recipe = (props) => {
         {title && <Card.Title className="text-center">{title}</Card.Title>}
         <Row>
           <Col md="6" className="mb-4">
-            {prep_time && (
+            {recipePage && prep_time && (
               <Card.Text>
                 <i className="far fa-clock"></i>Time to make: {prep_time} min
               </Card.Text>
             )}
           </Col>
           <Col md="6" className="mb-4">
-            {number_of_portions && (
+            {recipePage && number_of_portions && (
               <Card.Text>
                 <i className="fas fa-users"></i>Servings: {number_of_portions}
               </Card.Text>
             )}
           </Col>
         </Row>
-        {ingredients && (
+        {recipePage && ingredients && (
           <Card.Text>
             Ingredients:
             <ul><li>{ingredients}</li></ul>
             
           </Card.Text>
         )}
-        {steps && (
+        {recipePage && steps && (
           <Card.Text>
             Steps:
             <br /> {steps}
