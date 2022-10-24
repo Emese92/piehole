@@ -2,7 +2,7 @@
   font-family: "Raleway", sans-serif;
   background-color: #f8f8f8;
   min-height: 100vh;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   vertical-align: middle;
 }
 
@@ -15,7 +15,6 @@
 }
 
 a {
-
   color: #cfced3;
   transition: color ease-in-out 0.3s;
 }
@@ -37,9 +36,28 @@ i {
   vertical-align: middle;
 }
 
+
 .Input:focus {
   border-color: #ffc107;
   background-color: transparent;
   box-shadow: 0 0 2px #ffc107;
 }
 
+.Image {
+  max-height: 40vh;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.Content {
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 2px;
+  border: 1px solid #dadadf;
+}
+
+.FillerImage {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}

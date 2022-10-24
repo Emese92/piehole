@@ -73,7 +73,7 @@ function RecipeCreateForm() {
   };
 
   return (
-    <Container fluid>
+    <Container fluid >
       <Row className="d-flex justify-content-center align-items-center">
         <Col lg="8">
           <Card className="my-5 rounded-3" style={{ maxWidth: "800px" }}>

@@ -106,7 +106,7 @@ const Recipe = (props) => {
   };
 
   return (
-    <Card>
+    <Card className={styles.Recipe}>
       <Card.Body>
         <Media className="align-items-center justify-content-between">
           <Link to={`/profiles/${profile_id}`}>
@@ -124,11 +124,11 @@ const Recipe = (props) => {
                 </OverlayTrigger>
               ) : bookmark_id ? (
                 <span onClick={handleRemoveBookmark}>
-                  <i className={`fas fa-bookmark ${styles.Heart}`} />
+                  <i className={`far fa-bookmark ${styles.BookmarkOutline}`} />
                 </span>
               ) : currentUser ? (
                 <span onClick={handleBookmark}>
-                  <i className={`far fa-bookmark ${styles.HeartOutline}`} />
+                  <i className={`fas fa-bookmark ${styles.Bookmark}`} />
                 </span>
               ) : (
                 <OverlayTrigger
@@ -172,36 +172,36 @@ const Recipe = (props) => {
         </Media>
       </Card.Body>
       <Link to={`/recipes/${id}`}>
-        <Card.Img src={image} alt={title} />
+        <Card.Img src={image} alt={title} className={styles.Image} />
       </Link>
       <Card.Body>
-        {title && <Card.Title className="text-center">{title}</Card.Title>}
+        {title && <Card.Title className={styles.Title}>{title}</Card.Title>}
         <Row>
           <Col md="6" className="mb-4">
             {recipePage && prep_time && (
               <Card.Text>
-                <i className="far fa-clock"></i>Time to make: {prep_time} min
+                <i className={`far fa-clock ${styles.Icon}`}></i>Time to make: <span className={styles.Bold}>{prep_time} min </span> 
               </Card.Text>
             )}
           </Col>
           <Col md="6" className="mb-4">
             {recipePage && number_of_portions && (
               <Card.Text>
-                <i className="fas fa-users"></i>Servings: {number_of_portions}
+                <i className={`fas fa-users ${styles.Icon}`}></i>Servings: <span className={styles.Bold}>{number_of_portions} </span>
               </Card.Text>
             )}
           </Col>
         </Row>
         {recipePage && ingredients && (
-          <Card.Text>
-            Ingredients:
-            <ul><li>{ingredients}</li></ul>
+          <Card.Text className={styles.Ingredients}>
+            <p className={styles.Head}>Ingredients:</p>
+            {ingredients}
             
           </Card.Text>
         )}
         {recipePage && steps && (
           <Card.Text>
-            Steps:
+           <p className={styles.Head}>Steps:</p>
             <br /> {steps}
           </Card.Text>
         )}

@@ -27,7 +27,7 @@ function RecipePage() {
   }, [id]);
 
   return (
-    <Row className="h-100">
+    <Row className="mw-100">
       <Col className="p-0 p-lg-2">
         <Recipe {...recipe.results[0]} setRecipes={setRecipe} recipePage/>
         <Container className={appStyles.Content}>Comments</Container>

@@ -1,0 +1,53 @@
+.Bookmark,
+.Heart {
+  color: #ffc107;
+  cursor: pointer;
+}
+.Bookmark:hover,
+.Heart:hover {
+  color: #b5aa99;
+  cursor: pointer;
+}
+.BookmarkOutline,
+.HeartOutline {
+  color: #b5aa99;
+}
+.BookmarkOutline:hover,
+.HeartOutline:hover {
+  color: #ffc107;
+  cursor: pointer;
+}
+
+.Image {
+  width: 100%;
+  height: 350px;
+  object-fit: contain;
+}
+
+.Head {
+  border-bottom: solid 1px #ffc107;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.Icon {
+  font-size: smaller;
+  color: #ffc107;
+}
+
+.Bold {
+  font-weight: bold;
+}
+.Title {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.Container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row
+
+}

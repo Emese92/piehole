@@ -6,7 +6,9 @@ import { useLocation } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Recipe from "./Recipe";
 
-import NoResults from "../../assets/noresult.jpg";
+import appStyles from "../../App.module.css";
+import styles from "../../styles/Recipes.module.css";
+import NoResults from "../../assets/no-results.gif";
 import { Container, Form } from "react-bootstrap";
 import Asset from "../../components/Asset";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -43,8 +45,11 @@ function Recipes({ message, filter = "" }) {
   return (
     <>
       <div>
-        <i className="fas fa-search" />
-        <Form onSubmit={(event) => event.preventDefault()}>
+        <i className={`fas fa-search ${styles.SearchIcon}`} />
+        <Form
+          className={styles.SearchBar}
+          onSubmit={(event) => event.preventDefault()}
+        >
           <Form.Control
             value={query}
             onChange={(event) => setQuery(event.target.value)}
@@ -54,37 +59,32 @@ function Recipes({ message, filter = "" }) {
           />
         </Form>
       </div>
-      <Card className="bg-dark text-white">
-        <Card.Img src="holder.js/100px270" alt="Card image" />
+      {/* <Card className="bg-dark text-white">
         <Card.ImgOverlay>
-          <Card.Title>Card title</Card.Title>
-          <Card.Text>
-            This is a wider card with supporting text below as a natural lead-in
-            to additional content. This content is a little bit longer.
-          </Card.Text>
-          <Card.Text>Last updated 3 mins ago</Card.Text>
         </Card.ImgOverlay>
-      </Card>
-
+      </Card> */}
+<Container fluid>
       {hasLoaded ? (
         <>
           {recipes.results.length ? (
             <InfiniteScroll
               children={recipes.results.map((recipe) => (
-                <Row xs={1} md={2} lg={3} className="g-3 ">
+                <Row >
                   <Col>
-                    <Recipe
-                      key={recipe.id}
-                      {...recipe}
-                      setRecipes={setRecipes}
-                    />
+                    <Card>
+                      <Recipe
+                        key={recipe.id}
+                        {...recipe}
+                        setRecipes={setRecipes}
+                      />
+                    </Card>
                   </Col>
                 </Row>
               ))}
               dataLength={recipes.results.length}
-              loader={<Asset spinner/>}
+              loader={<Asset spinner />}
               hasMore={!!recipes.next}
-              next={()=> fetchMoreData(recipes,setRecipes)}
+              next={() => fetchMoreData(recipes, setRecipes)}
             />
           ) : (
             <Container>
@@ -96,7 +96,7 @@ function Recipes({ message, filter = "" }) {
         <Container>
           <Asset spinner />
         </Container>
-      )}
+      )}</Container>
     </>
   );
 }
