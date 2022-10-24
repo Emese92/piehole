@@ -8,10 +8,10 @@ export const fetchMoreData = async (resource, setResource) => {
     setResource((prevResource) => ({
       ...prevResource,
       next: data.next,
-      results: data.resoults.reduce((acc, cur) => {
-        return acc.some(accResult => accResult.id === cur.id)
-        ? acc
-        : [...acc, cur]
+      results: data.results.reduce((acc, cur) => {
+        return acc.some((accResult) => accResult.id === cur.id)
+          ? acc
+          : [...acc, cur];
       }, prevResource.results),
     }));
   } catch (err) {}

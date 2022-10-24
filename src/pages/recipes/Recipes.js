@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { useLocation } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Recipe from "./Recipe";
 
-import appStyles from "../../App.module.css";
 import styles from "../../styles/Recipes.module.css";
 import NoResults from "../../assets/no-results.gif";
 import { Container, Form } from "react-bootstrap";
@@ -63,40 +61,38 @@ function Recipes({ message, filter = "" }) {
         <Card.ImgOverlay>
         </Card.ImgOverlay>
       </Card> */}
-<Container fluid>
-      {hasLoaded ? (
-        <>
-          {recipes.results.length ? (
-            <InfiniteScroll
-              children={recipes.results.map((recipe) => (
-                <Row >
-                  <Col>
-                    <Card>
-                      <Recipe
-                        key={recipe.id}
-                        {...recipe}
-                        setRecipes={setRecipes}
-                      />
-                    </Card>
-                  </Col>
-                </Row>
-              ))}
-              dataLength={recipes.results.length}
-              loader={<Asset spinner />}
-              hasMore={!!recipes.next}
-              next={() => fetchMoreData(recipes, setRecipes)}
-            />
+
+      <Row className="h-100">
+        <Col className="py-2 p-0 p-lg-2">
+          {hasLoaded ? (
+            <>
+              {recipes.results.length ? (
+                <InfiniteScroll
+                  children={recipes.results.map((recipe) => (
+                    <Recipe
+                      key={recipe.id}
+                      {...recipe}
+                      setRecipes={setRecipes}
+                    />
+                  ))}
+                  dataLength={recipes.results.length}
+                  loader={<Asset spinner />}
+                  hasMore={!!recipes.next}
+                  next={() => fetchMoreData(recipes, setRecipes)}
+                />
+              ) : (
+                <Container>
+                  <Asset src={NoResults} message={message} />
+                </Container>
+              )}
+            </>
           ) : (
             <Container>
-              <Asset src={NoResults} message={message} />
+              <Asset spinner />
             </Container>
           )}
-        </>
-      ) : (
-        <Container>
-          <Asset spinner />
-        </Container>
-      )}</Container>
+        </Col>
+      </Row>
     </>
   );
 }
