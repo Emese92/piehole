@@ -9,8 +9,10 @@ import {
   Tooltip,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosRes } from "../../api/axiosDefaults";
 import Avatar from "../../components/Avatar";
+import { MoreDropdown } from "../../components/MoreDropdown";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/Recipe.module.css";
 
@@ -36,6 +38,20 @@ const Recipe = (props) => {
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+  const history = useHistory();
+
+  const handleEdit = () => {
+    history.push(`/recipes/${id}/edit`);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/recipes/${id}/`);
+      history.goBack();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const handleLike = async () => {
     try {
@@ -109,7 +125,7 @@ const Recipe = (props) => {
   return (
     <Container fluid>
       <Card className="rounded-3 mx-auto" style={{ maxWidth: "800px" }}>
-        <Card.Body className='p-5 d-flex flex-column  w-100"'>
+        <Card.Body className="p-5 d-flex flex-column  w-100">
           <Media className="align-items-center justify-content-between">
             <Link to={`/profiles/${profile_id}`}>
               <Avatar src={profile_image} height={55} />
@@ -126,13 +142,13 @@ const Recipe = (props) => {
                   </OverlayTrigger>
                 ) : bookmark_id ? (
                   <span onClick={handleRemoveBookmark}>
-                    <i
-                      className={`fas fa-bookmark ${styles.Bookmark}`}
-                    />
+                    <i className={`fas fa-bookmark ${styles.Bookmark}`} />
                   </span>
                 ) : currentUser ? (
                   <span onClick={handleBookmark}>
-                    <i className={`far fa-bookmark ${styles.BookmarkOutline}`} />
+                    <i
+                      className={`far fa-bookmark ${styles.BookmarkOutline}`}
+                    />
                   </span>
                 ) : (
                   <OverlayTrigger
@@ -171,7 +187,12 @@ const Recipe = (props) => {
                 </Link>
                 {comments_count}
               </span>
-              {is_owner && recipePage && "..."}
+              {is_owner && recipePage && (
+                <MoreDropdown
+                  handleEdit={handleEdit}
+                  handleDelete={handleDelete}
+                />
+              )}
             </div>
           </Media>
         </Card.Body>
