@@ -24,11 +24,11 @@ function CommentCreateForm(props) {
         ...prevComments,
         results: [data, ...prevComments.results],
       }));
-      setRecipe((prevRecipe) => ({
+      setRecipe((prevRecipes) => ({
         results: [
           {
-            ...prevRecipe.results[0],
-            comments_count: prevRecipe.result[0].comments_count + 1,
+            ...prevRecipes.results[0],
+            comments_count: prevRecipes.result[0].comments_count + 1,
           },
         ],
       }));
