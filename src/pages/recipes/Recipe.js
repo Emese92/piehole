@@ -37,7 +37,7 @@ const Recipe = (props) => {
   } = props;
 
   const currentUser = useCurrentUser();
-  const is_owner = currentUser?.username === owner;
+  const isOwner = currentUser?.username === owner;
   const history = useHistory();
 
   const handleEdit = () => {
@@ -133,7 +133,7 @@ const Recipe = (props) => {
             </Link>
             <div className="d-flex align-items-center">
               <span>
-                {is_owner ? (
+                {isOwner ? (
                   <OverlayTrigger
                     placement="top"
                     overlay={<Tooltip>You can't save your own post!</Tooltip>}
@@ -158,7 +158,7 @@ const Recipe = (props) => {
                     <i className="far fa-bookmark" />
                   </OverlayTrigger>
                 )}
-                {is_owner ? (
+                {isOwner ? (
                   <OverlayTrigger
                     placement="top"
                     overlay={<Tooltip>You can't like your own post!</Tooltip>}
@@ -187,7 +187,7 @@ const Recipe = (props) => {
                 </Link>
                 {comments_count}
               </span>
-              {is_owner && recipePage && (
+              {isOwner && recipePage && (
                 <MoreDropdown
                   handleEdit={handleEdit}
                   handleDelete={handleDelete}

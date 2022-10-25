@@ -22,15 +22,16 @@ const Comment = (props) => {
 
   const [showEditForm, setShowEditForm] = useState(false);
   const currentUser = useCurrentUser();
-  const is_owner = currentUser.username === owner;
+  const isOwner = currentUser.username === owner;
 
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/comments/${id}/`);
       setRecipe((prevRecipe) => ({
+        ...prevRecipe,
         results: [
           {
-            ...setRecipe.results[0],
+            ...prevRecipe.results[0],
             comments_count: prevRecipe.results[0].comments_count - 1,
           },
         ],
@@ -68,7 +69,7 @@ const Comment = (props) => {
             <p>{content}</p>
           )}
         </Media.Body>
-        {is_owner && !showEditForm && (
+        {isOwner && !showEditForm && (
           <MoreDropdown
             handleEdit={() => setShowEditForm(true)}
             handleDelete={handleDelete}

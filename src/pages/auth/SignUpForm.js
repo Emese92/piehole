@@ -22,7 +22,7 @@ export const SignUpForm = () => {
   });
   const { username, password1, password2 } = signUpData;
 
-  const [errors, seterrors] = useState({});
+  const [errors, setErrors] = useState({});
 
   const history = useHistory();
   const handleChange = (event) => {
@@ -38,7 +38,7 @@ export const SignUpForm = () => {
       await axios.post("/dj-rest-auth/registration/", signUpData);
       history.push("/signin");
     } catch (err) {
-      seterrors(err.response?.data);
+      setErrors(err.response?.data);
     }
   };
 

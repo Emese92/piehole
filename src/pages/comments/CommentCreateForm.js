@@ -22,19 +22,23 @@ function CommentCreateForm(props) {
         content,
         recipe,
       });
+      setContent("");
       setComments((prevComments) => ({
         ...prevComments,
         results: [data, ...prevComments.results],
       }));
-      setRecipe((prevRecipes) => ({
-        results: [
-          {
-            ...prevRecipes.results[0],
-            comments_count: prevRecipes.result[0].comments_count + 1,
-          },
-        ],
-      }));
-      setContent("");
+      setRecipe((prevRecipes) => (
+        {
+          results: [
+            {
+              ...prevRecipes.results[0],
+              comments_count: prevRecipes.result[0].comments_count + 1,
+            },
+          ],
+        }
+      ));
+
+      
     } catch (err) {
       console.log(err);
     }
@@ -67,7 +71,7 @@ function CommentCreateForm(props) {
                 disabled={!content.trim()}
                 type="submit"
               >
-                post
+                Post
               </button>
             </Form>
           </Card>

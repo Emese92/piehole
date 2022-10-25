@@ -35,7 +35,7 @@ const NavBar = () => {
       >
         <i className="fas fa-bookmark"></i>
         <br />
-        Saved
+        {/* Saved */}
       </NavLink>
       <NavLink
         className={styles.NavLink}
@@ -44,7 +44,7 @@ const NavBar = () => {
       >
         <i className="fas fa-plus-square"></i>
         <br />
-        Add Recipe
+        {/* Add Recipe */}
       </NavLink>
       <NavLink
         className={styles.NavLink}
@@ -53,7 +53,7 @@ const NavBar = () => {
       >
         <Avatar src={currentUser?.profile_image} height={30} />
         <br />
-        Profile
+        {/* Profile */}
       </NavLink>
       <NavLink
         className={styles.NavLink}
@@ -63,12 +63,12 @@ const NavBar = () => {
       >
         <i className="fas fa-sign-out-alt"></i>
         <br />
-        Sign out
+        {/* Sign out */}
       </NavLink>
     </>
   );
 
-  const loggedOutIcons = (
+  const LoggedOutIcons = (
     <>
       <NavLink
         className={styles.NavLink}
@@ -77,7 +77,7 @@ const NavBar = () => {
       >
         <i className="fas fa-sign-in-alt"></i>
         <br />
-        Sign in
+        {/* Sign in */}
       </NavLink>
       <NavLink
         className={styles.NavLink}
@@ -86,7 +86,7 @@ const NavBar = () => {
       >
         <i className="fas fa-user-plus"></i>
         <br />
-        Sign up
+        {/* Sign up */}
       </NavLink>
     </>
   );
@@ -122,9 +122,9 @@ const NavBar = () => {
               >
                 <i className="fas fa-home" />
                 <br />
-                Home
+                {/* Home */}
               </NavLink>
-              {currentUser ? LoggedInIcons : loggedOutIcons}
+              {currentUser ? LoggedInIcons : LoggedOutIcons}
             </Nav>
           </Navbar.Collapse>
         </Container>

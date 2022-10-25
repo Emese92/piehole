@@ -77,7 +77,7 @@ function RecipeCreateForm() {
       <Row className="d-flex justify-content-center align-items-center">
         <Col lg="8">
           <Card className="my-5 rounded-3" style={{ maxWidth: "800px" }}>
-            <Card.Body className='p-5 d-flex flex-column align-items-center mx-auto w-100"'>
+            <Card.Body className='p-5 d-flex flex-column align-items-center mx-auto w-100'>
               <Card.Title className={styles.Title}>Add a Recipe</Card.Title>
               <Form onSubmit={handleSubmit}>
                 <Form.Group>

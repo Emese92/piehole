@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { axiosRes } from "../../api/axiosDefaults";
 
-import styles from "../../styles/CommentCreateEditForm.module.css";
+import btnStyles from "../../styles/Button.module.css"
+import styles from "../../styles/CommentCreateEditForm.module.css"
 
 // The boilerplate from Code institute was used on this page
 
@@ -54,14 +55,14 @@ function CommentEditForm(props) {
       </Form.Group>
       <div className="text-right">
         <button
-          className={styles.Button}
+          className={`${btnStyles.Button} btn m-auto`}
           onClick={() => setShowEditForm(false)}
           type="button"
         >
           cancel
         </button>
         <button
-          className={styles.Button}
+          className={`${btnStyles.Button} btn m-auto`}
           disabled={!content.trim()}
           type="submit"
         >
