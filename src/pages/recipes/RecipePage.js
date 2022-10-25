@@ -47,7 +47,7 @@ function RecipePage() {
               profile_id={currentUser.profile_id}
               profileImage={profile_image}
               recipe={id}
-              setRecipe={setRecipe}
+              setRecipes={setRecipe}
               setComments={setComments}
             />
           ) : comments.results.length ? (

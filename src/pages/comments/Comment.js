@@ -19,7 +19,7 @@ const Comment = (props) => {
     setRecipe,
     setComments,
   } = props;
-  
+
   const [showEditForm, setShowEditForm] = useState(false);
   const currentUser = useCurrentUser();
   const is_owner = currentUser.username === owner;
@@ -30,7 +30,7 @@ const Comment = (props) => {
       setRecipe((prevRecipe) => ({
         results: [
           {
-            ...setRecipe.result[0],
+            ...setRecipe.results[0],
             comments_count: prevRecipe.results[0].comments_count - 1,
           },
         ],
@@ -39,7 +39,9 @@ const Comment = (props) => {
         ...prevComments,
         results: prevComments.results.filter((comment) => comment.id !== id),
       }));
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -54,13 +56,13 @@ const Comment = (props) => {
           <span className={styles.Date}>{updated_at}</span>
           {showEditForm ? (
             <CommentEditForm
-            id={id}
-            profile_id={profile_id}
-            content={content}
-            profileImage={profile_image}
-            setComments={setComments}
-            setShowEditForm={setShowEditForm}
-          />
+              id={id}
+              profile_id={profile_id}
+              content={content}
+              profileImage={profile_image}
+              setComments={setComments}
+              setShowEditForm={setShowEditForm}
+            />
           ) : (
             <p>{content}</p>
           )}

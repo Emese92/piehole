@@ -33,7 +33,7 @@ const Recipe = (props) => {
     likes_count,
     comments_count,
     recipePage,
-    setRecipe,
+    setRecipes,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -56,7 +56,7 @@ const Recipe = (props) => {
   const handleLike = async () => {
     try {
       const { data } = await axiosRes.post("/likes/", { recipe: id });
-      setRecipe((prevRecipes) => ({
+      setRecipes((prevRecipes) => ({
         ...prevRecipes,
         results: prevRecipes.results.map((recipe) => {
           return recipe.id === id
@@ -76,7 +76,7 @@ const Recipe = (props) => {
   const handleUnike = async () => {
     try {
       await axiosRes.delete(`/likes/${like_id}/`);
-      setRecipe((prevRecipes) => ({
+      setRecipes((prevRecipes) => ({
         ...prevRecipes,
         results: prevRecipes.results.map((recipe) => {
           return recipe.id === id
@@ -92,7 +92,7 @@ const Recipe = (props) => {
   const handleBookmark = async () => {
     try {
       const { data } = await axiosRes.post("/bookmarks/", { recipe: id });
-      setRecipe((prevRecipes) => ({
+      setRecipes((prevRecipes) => ({
         ...prevRecipes,
         results: prevRecipes.results.map((recipe) => {
           return recipe.id === id
@@ -111,7 +111,7 @@ const Recipe = (props) => {
   const handleRemoveBookmark = async () => {
     try {
       await axiosRes.delete(`/bookmarks/${bookmark_id}/`);
-      setRecipe((prevRecipes) => ({
+      setRecipes((prevRecipes) => ({
         ...prevRecipes,
         results: prevRecipes.results.map((recipe) => {
           return recipe.id === id ? { ...recipe, bookmark_id: null } : recipe;
