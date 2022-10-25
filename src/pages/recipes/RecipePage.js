@@ -4,33 +4,66 @@ import { Col, Row, Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
-import appStyles from "../../App.module.css";
 import Recipe from "./Recipe";
+import CommentCreateForm from "../comments/CommentCreateForm";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import Comment from "../comments/Comment";
 
 function RecipePage() {
   const { id } = useParams();
   const [recipe, setRecipe] = useState({ results: [] });
 
+  const currentUser = useCurrentUser();
+  const profile_image = currentUser?.profile_image;
+  const [comments, setComments] = useState({ results: [] });
+
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const [{ data: recipe }] = await Promise.all([
+        const [{ data: recipe }, { data: comments }] = await Promise.all([
           axiosReq.get(`/recipes/${id}`),
+          axiosReq.get(`/comments/?recipe=${id}`),
         ]);
-        setRecipe({results: [recipe]})
-        console.log(recipe)
+        setRecipe({ results: [recipe] });
+        setComments(comments);
       } catch (err) {
         console.log(err);
       }
     };
-    handleMount()
+    handleMount();
   }, [id]);
 
   return (
     <Row className="mw-100">
       <Col className="p-0 p-lg-2">
-        <Recipe {...recipe.results[0]} setRecipes={setRecipe} recipePage/>
-        <Container className={appStyles.Content}>Comments</Container>
+        <Recipe {...recipe.results[0]} setRecipes={setRecipe} recipePage />
+        <Container>
+          {currentUser ? (
+            <CommentCreateForm
+              profile_id={currentUser.profile_id}
+              profileImage={profile_image}
+              recipe={id}
+              setRecipe={setRecipe}
+              setComments={setComments}
+            />
+          ) : comments.results.length ? (
+            "Comments"
+          ) : null}
+          {comments.results.length ? (
+            comments.results.map((comment) => (
+              <Comment
+                key={comment.id}
+                {...comment}
+                setRecipe={setRecipe}
+                setComments={setComments}
+              />
+            ))
+          ) : currentUser ? (
+            <span>No comments yet</span>
+          ) : (
+            <span>No comments yet</span>
+          )}
+        </Container>
       </Col>
     </Row>
   );

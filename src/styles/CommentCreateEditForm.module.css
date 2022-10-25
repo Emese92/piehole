@@ -1,0 +1,12 @@
+.Button {
+    background-color: #B5AA99;
+}
+
+.Button:hover {
+    cursor: pointer;
+    background-color: #ffc107;
+}
+
+.Form {
+    border:none;
+}
