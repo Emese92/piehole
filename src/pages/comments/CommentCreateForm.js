@@ -3,7 +3,9 @@ import { Card, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
 import Avatar from "../../components/Avatar";
-import styles from "../../styles/CommentCreateEditForm.module.css";
+
+import btnStyles from "../../styles/Button.module.css"
+import styles from "../../styles/CommentCreateEditForm.module.css"
 
 function CommentCreateForm(props) {
   const { recipe, setRecipe, setComments, profileImage, profile_id } = props;
@@ -37,13 +39,14 @@ function CommentCreateForm(props) {
       console.log(err);
     }
   };
+  
 
   return (
     <Container fluid>
       <Row className="d-flex justify-content-center align-items-center">
-        <Col lg="8">
+        <Col >
           <Card className="my-5 rounded-3" style={{ maxWidth: "800px" }}>
-            <Form className={styles.Form} onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
               <Form.Group>
                 <InputGroup>
                   <Link to={`/profiles/${profile_id}`}>
@@ -55,12 +58,12 @@ function CommentCreateForm(props) {
                     as="textarea"
                     value={content}
                     onChange={handleChange}
-                    rows={2}
+                    rows={1}
                   />
                 </InputGroup>
               </Form.Group>
               <button
-                className={`${styles.Button} btn d-block ml-auto`}
+                className={`${btnStyles.Button} btn d-block m-auto`}
                 disabled={!content.trim()}
                 type="submit"
               >

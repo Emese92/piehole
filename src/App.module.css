@@ -51,6 +51,7 @@ i {
 }
 
 .Content {
+  margin-top: 5px;
   background-color: #ffffff;
   padding: 10px;
   border-radius: 2px;

@@ -1,12 +1,11 @@
-.Button {
-    background-color: #B5AA99;
-}
-
-.Button:hover {
-    cursor: pointer;
-    background-color: #ffc107;
-}
-
 .Form {
-    border:none;
-}
+    border: none;
+  }
+  
+
+  .Form:focus {
+    background-color: transparent;
+    box-shadow: none;
+    border-bottom: 2px #ffc107 solid;
+  }
+  
