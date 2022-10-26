@@ -7,7 +7,7 @@ import Recipe from "./Recipe";
 
 import styles from "../../styles/Recipes.module.css";
 import NoResults from "../../assets/no-results.gif";
-import { Card, Container, Form } from "react-bootstrap";
+import { Container, Form } from "react-bootstrap";
 import Asset from "../../components/Asset";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/Utils";
@@ -60,7 +60,7 @@ function Recipes({ message, filter = "" }) {
       </div>
       <Row className="h-100">
         <Col className="py-2 p-0 p-lg-2">
-        <PopularRecipes />
+        <PopularRecipes  />
       </Col>
       </Row>
 

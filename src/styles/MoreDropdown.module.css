@@ -1,5 +1,6 @@
 .Dots:hover {
   color: #ffc107;
+  cursor: pointer;
 }
 
 .Press:active {
