@@ -34,7 +34,10 @@ const NavBar = () => {
 
   const LoggedInIcons = (
     <>
-      <OverlayTrigger placement="bottom" overlay={<Tooltip className={styles.Tooltip}>Bookmarks</Tooltip>}>
+      <OverlayTrigger
+        placement="bottom"
+        overlay={<Tooltip className={styles.Tooltip}>Bookmarks</Tooltip>}
+      >
         <NavLink
           className={styles.NavLink}
           activeClassName={styles.Active}

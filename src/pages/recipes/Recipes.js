@@ -17,7 +17,7 @@ function Recipes({ message, filter = "" }) {
   const [recipes, setRecipes] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
-
+  
   const [query, setQuery] = useState("");
 
   useEffect(() => {
