@@ -1,4 +1,5 @@
 .Avatar {
   border-radius: 50%;
   object-fit: cover;
+  padding: 5px;
 }

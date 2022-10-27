@@ -45,13 +45,6 @@ export function ProfileEditDropdown({ id }) {
           Edit
         </Dropdown.Item>
         <Dropdown.Item
-          onClick={() => history.push(`/profiles/${id}/edit/username`)}
-          aria-label="edit-username"
-          className={styles.Press}
-        >
-          Change username
-        </Dropdown.Item>
-        <Dropdown.Item
           onClick={() => history.push(`/profiles/${id}/edit/password`)}
           aria-label="edit-password"
           className={styles.Press}

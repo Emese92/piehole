@@ -66,7 +66,7 @@ const NavBar = () => {
           activeClassName={styles.Active}
           to={`/profiles/${currentUser?.profile_id}`}
         >
-          <Avatar src={currentUser?.profile_image} height={30} />
+          <Avatar src={currentUser?.profile_image} height={35} />
         </NavLink>
       </OverlayTrigger>
 

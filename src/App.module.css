@@ -37,6 +37,10 @@ i {
   color: gray;
 }
 
+.Input{
+  margin-top:5px;
+  margin-top: 5px;
+}
 
 .Input:focus {
   border-color: #ffc107;
@@ -57,4 +61,6 @@ i {
   border-radius: 2px;
   border: 1px solid #dadadf;
 }
+
+
 
