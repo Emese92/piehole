@@ -19,7 +19,6 @@ import appStyles from "../../App.module.css";
 import avatarStyles from "../../styles/Avatar.module.css";
 import { Container } from "react-bootstrap";
 
-
 // This code is based on the Code Institute's walkthrough project and modified for my project
 
 const ProfileEditForm = () => {
@@ -120,7 +119,10 @@ const ProfileEditForm = () => {
     <Form onSubmit={handleSubmit}>
       <Row>
         <Col className="py-2 mx-auto text-center">
-        <Container className={appStyles.Content} style={{ maxWidth: "600px" }}>
+          <Container
+            className={appStyles.Content}
+            style={{ maxWidth: "600px" }}
+          >
             <Form.Group>
               {image && (
                 <figure>

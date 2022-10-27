@@ -17,7 +17,7 @@ function useClickOutsideToggle() {
     };
   }, [ref]);
 
-  return {expanded, setExpanded, ref};
+  return { expanded, setExpanded, ref };
 }
 
 export default useClickOutsideToggle;

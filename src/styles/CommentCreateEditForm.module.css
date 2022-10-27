@@ -1,11 +1,9 @@
 .Form {
-    border: none;
-  }
-  
+  border: none;
+}
 
-  .Form:focus {
-    background-color: transparent;
-    box-shadow: none;
-    border-bottom: 2px #ffc107 solid;
-  }
-  
+.Form:focus {
+  background-color: transparent;
+  box-shadow: none;
+  border-bottom: 2px #ffc107 solid;
+}

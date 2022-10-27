@@ -1,14 +1,13 @@
 .NavBar {
-    font-family: "Amatic SC", cursive;
-    letter-spacing: 1px;
-    color: #cfced3;
-
+  font-family: "Amatic SC", cursive;
+  letter-spacing: 1px;
+  color: #cfced3;
 }
 
 .NavLink {
-    padding: 5px;
+  padding: 5px;
 }
 
 .Active {
-    color: #ffc107;
-  }
+  color: #ffc107;
+}

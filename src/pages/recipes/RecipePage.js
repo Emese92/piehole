@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from "react";
-
-import { Col, Row, Container} from "react-bootstrap";
+import { Col, Row, Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
-
-import appStyles from "../../App.module.css";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Asset from "../../components/Asset";
-import {fetchMoreData} from "../..//utils/Utils.js";
+import { fetchMoreData } from "../..//utils/Utils.js";
 import Recipe from "./Recipe";
 import CommentCreateForm from "../comments/CommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Comment from "../comments/Comment";
-
 
 function RecipePage() {
   const { id } = useParams();
@@ -42,9 +38,8 @@ function RecipePage() {
     <Row className="mw-100">
       <Col className="p-0 p-lg-2">
         <Recipe {...recipe.results[0]} setRecipes={setRecipe} recipePage />
-        <Container className={`rounded-3 mx-auto ${appStyles.Container}`} style={{ maxWidth: "800px"}}>
+        <Container className="rounded-3 mx-auto" style={{ maxWidth: "800px" }}>
           {currentUser ? (
-
             <CommentCreateForm
               profile_id={currentUser.profile_id}
               profileImage={profile_image}
@@ -58,7 +53,6 @@ function RecipePage() {
           {comments.results.length ? (
             <InfiniteScroll
               children={comments.results.map((comment) => (
-
                 <Comment
                   key={comment.id}
                   {...comment}
@@ -74,7 +68,6 @@ function RecipePage() {
           ) : (
             <div className="text-center mb-4">No comments yet</div>
           )}
-
         </Container>
       </Col>
     </Row>

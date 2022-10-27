@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 import { useLocation } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Recipe from "./Recipe";
@@ -17,7 +16,7 @@ function Recipes({ message, filter = "" }) {
   const [recipes, setRecipes] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
-  
+
   const [query, setQuery] = useState("");
 
   useEffect(() => {
@@ -58,43 +57,42 @@ function Recipes({ message, filter = "" }) {
           />
         </Form>
       </div>
-      <Row className="h-100">
-        <Col className="py-2 p-0 p-lg-2">
-        <PopularRecipes  />
-      </Col>
-      </Row>
+      <div className="h-100">
+        <PopularRecipes />
+        <hr />
+      </div>
 
-      <Row className="h-100">
-        <Col className="py-2 p-0 p-lg-2">
-          {hasLoaded ? (
-            <>
-              {recipes.results.length ? (
-                <InfiniteScroll
-                  children={recipes.results.map((recipe) => (
-                    <Recipe
-                      key={recipe.id}
-                      {...recipe}
-                      setRecipes={setRecipes}
-                    />
-                  ))}
-                  dataLength={recipes.results.length}
-                  loader={<Asset spinner />}
-                  hasMore={!!recipes.next}
-                  next={() => fetchMoreData(recipes, setRecipes)}
-                />
-              ) : (
-                <Container>
-                  <Asset src={NoResults} message={message} />
-                </Container>
-              )}
-            </>
-          ) : (
-            <Container>
-              <Asset spinner />
-            </Container>
-          )}
-        </Col>
-      </Row>
+      <Col className="py-2 p-0 p-lg-2">
+        {hasLoaded ? (
+          <>
+            {recipes.results.length ? (
+              <InfiniteScroll
+                children={recipes.results.map((recipe) => (
+                  <Recipe
+                    key={recipe.id}
+                    {...recipe}
+                    setRecipes={setRecipes}
+                  />
+                ))}
+                dataLength={recipes.results.length}
+                loader={
+                  <Asset className="align-itmes-center d-block" spinner />
+                }
+                hasMore={!!recipes.next}
+                next={() => fetchMoreData(recipes, setRecipes)}
+              />
+            ) : (
+              <Container>
+                <Asset src={NoResults} message={message} />
+              </Container>
+            )}
+          </>
+        ) : (
+          <Container>
+            <Asset spinner />
+          </Container>
+        )}
+      </Col>
     </>
   );
 }

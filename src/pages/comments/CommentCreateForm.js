@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
 import Avatar from "../../components/Avatar";
 
-import btnStyles from "../../styles/Button.module.css"
-import styles from "../../styles/CommentCreateEditForm.module.css"
+import btnStyles from "../../styles/Button.module.css";
+import styles from "../../styles/CommentCreateEditForm.module.css";
 
 function CommentCreateForm(props) {
   const { recipe, setRecipe, setComments, profileImage, profile_id } = props;
@@ -27,28 +27,23 @@ function CommentCreateForm(props) {
         ...prevComments,
         results: [data, ...prevComments.results],
       }));
-      setRecipe((prevRecipes) => (
-        {
-          results: [
-            {
-              ...prevRecipes.results[0],
-              comments_count: prevRecipes.result[0].comments_count + 1,
-            },
-          ],
-        }
-      ));
-
-      
+      setRecipe((prevRecipes) => ({
+        results: [
+          {
+            ...prevRecipes.results[0],
+            comments_count: prevRecipes.result[0].comments_count + 1,
+          },
+        ],
+      }));
     } catch (err) {
       console.log(err);
     }
   };
-  
 
   return (
     <Container fluid>
       <Row className="d-flex justify-content-center align-items-center">
-        <Col >
+        <Col>
           <Card className="my-5 rounded-3" style={{ maxWidth: "800px" }}>
             <Form onSubmit={handleSubmit}>
               <Form.Group>

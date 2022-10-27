@@ -3,11 +3,10 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { axiosRes } from "../../api/axiosDefaults";
 
-import btnStyles from "../../styles/Button.module.css"
-import styles from "../../styles/CommentCreateEditForm.module.css"
+import btnStyles from "../../styles/Button.module.css";
+import styles from "../../styles/CommentCreateEditForm.module.css";
 
 // The boilerplate from Code institute was used on this page
-
 
 function CommentEditForm(props) {
   const { id, content, setShowEditForm, setComments } = props;

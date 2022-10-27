@@ -47,35 +47,35 @@ const Comment = (props) => {
 
   return (
     <>
-    <div>
-      <hr />
-      <Media>
-        <Link to={`/profiles/${profile_id}`}>
-          <Avatar src={profile_image} />
-        </Link>
-        <Media.Body className="align-self-center ml-2 ">
-          <span className={styles.Owner}>{owner}</span>
-          <span className={styles.Date}> - {updated_at}</span>
-          {showEditForm ? (
-            <CommentEditForm
-              id={id}
-              profile_id={profile_id}
-              content={content}
-              profileImage={profile_image}
-              setComments={setComments}
-              setShowEditForm={setShowEditForm}
+      <div>
+        <hr />
+        <Media>
+          <Link to={`/profiles/${profile_id}`}>
+            <Avatar src={profile_image} />
+          </Link>
+          <Media.Body className="align-self-center ml-2 ">
+            <span className={styles.Owner}>{owner}</span>
+            <span className={styles.Date}> - {updated_at}</span>
+            {showEditForm ? (
+              <CommentEditForm
+                id={id}
+                profile_id={profile_id}
+                content={content}
+                profileImage={profile_image}
+                setComments={setComments}
+                setShowEditForm={setShowEditForm}
+              />
+            ) : (
+              <p>{content}</p>
+            )}
+          </Media.Body>
+          {isOwner && !showEditForm && (
+            <MoreDropdown
+              handleEdit={() => setShowEditForm(true)}
+              handleDelete={handleDelete}
             />
-          ) : (
-            <p>{content}</p>
           )}
-        </Media.Body>
-        {isOwner && !showEditForm && (
-          <MoreDropdown
-            handleEdit={() => setShowEditForm(true)}
-            handleDelete={handleDelete}
-          />
-        )}
-      </Media>
+        </Media>
       </div>
     </>
   );

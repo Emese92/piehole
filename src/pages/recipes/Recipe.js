@@ -2,7 +2,6 @@ import React from "react";
 import {
   Card,
   Col,
-  Container,
   Media,
   OverlayTrigger,
   Row,
@@ -35,7 +34,7 @@ const Recipe = (props) => {
     recipePage,
     setRecipes,
   } = props;
-  // console.log(props);
+
   const currentUser = useCurrentUser();
   const isOwner = currentUser?.username === owner;
   const history = useHistory();
@@ -123,9 +122,9 @@ const Recipe = (props) => {
   };
 
   return (
-    <Container fluid>
+
       <Card className="rounded-3 mx-auto" style={{ maxWidth: "800px" }}>
-        <Card.Body className="p-5 d-flex flex-column  w-100">
+        <Card.Body className="d-flex flex-column ">
           <Media className="align-items-center justify-content-between">
             <Link to={`/profiles/${profile_id}`}>
               <Avatar src={profile_image} height={55} />
@@ -200,7 +199,7 @@ const Recipe = (props) => {
           <Card.Img src={image} alt={title} className={styles.Image} />
         </Link>
         <Card.Body>
-          {title && <Card.Title className={styles.Title}>{title}</Card.Title>}
+          {title &&  <Card.Title className={styles.Title}>{title}</Card.Title>}
           <Row>
             <Col md="6" className="mb-4 align-items-center d-flex flex-column">
               {recipePage && prep_time && (
@@ -233,7 +232,7 @@ const Recipe = (props) => {
           )}
         </Card.Body>
       </Card>
-    </Container>
+
   );
 };
 
