@@ -35,7 +35,7 @@ const Recipe = (props) => {
     recipePage,
     setRecipes,
   } = props;
-
+  // console.log(props);
   const currentUser = useCurrentUser();
   const isOwner = currentUser?.username === owner;
   const history = useHistory();

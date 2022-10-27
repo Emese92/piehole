@@ -1,55 +1,32 @@
-import React, { useEffect, useState } from 'react'
-import { Container } from 'react-bootstrap'
-import { axiosReq } from '../../api/axiosDefaults'
-import Asset from "../../components/Asset";
-
-import appStyles from "../../App.module.css"
-
+import React, { useEffect, useState } from "react";
+import { Container } from "react-bootstrap";
+import { axiosReq } from "../../api/axiosDefaults";
+import appStyles from "../../App.module.css";
+import Recipe from "./Recipe";
 
 const PopularRecipes = () => {
-    const [recipeData, setRecipeData] = useState({
-        popularRecipes: {results : []},
 
-    })
-    const {popularRecipes} = recipeData;
-    
+  const [popularRecipes, setPopularRecipes] = useState({ results: [] });
 
-    useEffect (() => {
-        const handleMount = async () => {
-            try {
-                const {data} = await axiosReq.get(
-                    '/likes/?ordering=likes_count'
-                )
+  useEffect(() => {
+    const handleMount = async () => {
+      try {
+        const { data } = await axiosReq.get(`/recipes/?ordering=-likes_count`);
+        setPopularRecipes(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    handleMount();
+  }, []);
 
-                console.log(data)
-                setRecipeData(prevState => ({
-                    ...prevState,
-                    popularRecipes: data,
-                }))
-            }catch(err){
-                console.log(err)
-            }
-        }
-        handleMount()
-    },[])
-
+  console.log(popularRecipes.results[0].id)
 
   return (
     <Container className={appStyles.Content}>
-        {popularRecipes.results.length ?(
-            <>
-            <p>You liked the most</p>
-        {popularRecipes.results.map(likes => (
-            <p key={likes.id}>{likes.recipe}</p>
-        ))}
-            </>
-        ): (
-            <Asset spinner/>
-        )
-        }
-
+      <Recipe key={popularRecipes.results[0].id} {...popularRecipes.results[0]} setRecipes={setPopularRecipes} />
     </Container>
-  )
-}
+  );
+};
 
-export default PopularRecipes
+export default PopularRecipes;
