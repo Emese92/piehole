@@ -1,8 +1,9 @@
 import styles from "../styles/MoreDropdown.module.css";
 import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
+import { useHistory } from "react-router";
 
-// This code is from the code Institute's walkthrough project
+// This code is based on the Code Institute's walkthrough project and modified for my project
 
 const ThreeDots = React.forwardRef(({ children, onClick }, ref) => (
   <i
@@ -29,3 +30,35 @@ export const MoreDropdown = ({handleEdit, handleDelete}) => {
     </Dropdown>
   );
 };
+
+export function ProfileEditDropdown({ id }) {
+  const history = useHistory();
+  return (
+    <Dropdown className="ml-auto px-3 pt-3" drop="down">
+      <Dropdown.Toggle as={ThreeDots} />
+      <Dropdown.Menu>
+        <Dropdown.Item
+          onClick={() => history.push(`/profiles/${id}/edit`)}
+          aria-label="edit-profile"
+          className={styles.Press}
+        >
+          Edit
+        </Dropdown.Item>
+        <Dropdown.Item
+          onClick={() => history.push(`/profiles/${id}/edit/username`)}
+          aria-label="edit-username"
+          className={styles.Press}
+        >
+          Change username
+        </Dropdown.Item>
+        <Dropdown.Item
+          onClick={() => history.push(`/profiles/${id}/edit/password`)}
+          aria-label="edit-password"
+          className={styles.Press}
+        >
+          Change password
+        </Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
+  );
+}

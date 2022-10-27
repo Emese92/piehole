@@ -13,14 +13,16 @@
   min-width: 75px;
 }
 
-.Button:hover {
+.Button:hover,
+.Edit:hover {
   opacity: 0.8;
   border-color: transparent;
   cursor: pointer;
   background-color: #ffc107;
   color: black;
 }
-.Button:active {
+.Button:active,
+.Edit:active {
   background-color: #ffc107 !important;
   opacity: 0.8;
   border-color: transparent;
@@ -28,7 +30,8 @@
   color: black;
   box-shadow: 0 0 10px #ffc107;
 }
-.Button:focus {
+.Button:focus,
+.Edit:focus {
   opacity: 0.8;
   border-color: transparent;
   cursor: pointer;
@@ -42,11 +45,18 @@
   width: 100%;
 }
 
-.Gray{
-  background-color: #B5AA99;
+.Gray {
+  background-color: #b5aa99;
 }
 
-.Cancel{
-  color:black;
+.Cancel {
+  color: black;
   border: 1px gray solid;
+}
+
+.Edit {
+  background-color: transparent;
+  border: 1px #b5aa99 solid;
+  color: gray;
+  margin: 0 10px 0 10px;
 }
