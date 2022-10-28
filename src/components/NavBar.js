@@ -28,7 +28,7 @@ const NavBar = () => {
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
-      removeTokenTimestamp()
+      removeTokenTimestamp();
     } catch (err) {
       console.log(err);
     }
@@ -44,7 +44,7 @@ const NavBar = () => {
           className={styles.NavLink}
           activeClassName={styles.Active}
           to="/bookmarks"
-          
+           data-testid="bookmarks"
         >
           <i className="fas fa-bookmark"></i>
         </NavLink>
@@ -58,6 +58,7 @@ const NavBar = () => {
           className={styles.NavLink}
           activeClassName={styles.Active}
           to="/recipes/create"
+          data-testid="add-new-recipe"
         >
           <i className="fas fa-plus-square"></i>
         </NavLink>
@@ -68,6 +69,7 @@ const NavBar = () => {
           className={styles.NavLink}
           activeClassName={styles.Active}
           to={`/profiles/${currentUser?.profile_id}`}
+          data-testid="profile"
         >
           <Avatar src={currentUser?.profile_image} height={35} />
         </NavLink>
@@ -79,9 +81,9 @@ const NavBar = () => {
           activeClassName={styles.Active}
           to="/"
           onClick={handleSignOut}
+          data-testid="sign-out"
         >
           <i className="fas fa-sign-out-alt"></i>
-          
         </NavLink>
       </OverlayTrigger>
     </>
@@ -94,6 +96,7 @@ const NavBar = () => {
           className={styles.NavLink}
           activeClassName={styles.Active}
           to="/signin"
+          data-testid="sign-in"
         >
           <i className="fas fa-sign-in-alt"></i>
         </NavLink>
@@ -104,6 +107,7 @@ const NavBar = () => {
           className={styles.NavLink}
           activeClassName={styles.Active}
           to="/signup"
+          data-testid="sign-up"
         >
           <i className="fas fa-user-plus"></i>
         </NavLink>
