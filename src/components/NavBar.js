@@ -42,6 +42,7 @@ const NavBar = () => {
           className={styles.NavLink}
           activeClassName={styles.Active}
           to="/bookmarks"
+          
         >
           <i className="fas fa-bookmark"></i>
         </NavLink>
@@ -78,6 +79,7 @@ const NavBar = () => {
           onClick={handleSignOut}
         >
           <i className="fas fa-sign-out-alt"></i>
+          
         </NavLink>
       </OverlayTrigger>
     </>
@@ -142,8 +144,6 @@ const NavBar = () => {
                   to="/"
                 >
                   <i className="fas fa-home" />
-                  <br />
-                  {/* Home */}
                 </NavLink>
               </OverlayTrigger>
               {currentUser ? LoggedInIcons : LoggedOutIcons}
