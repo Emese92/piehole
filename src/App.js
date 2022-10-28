@@ -13,6 +13,7 @@ import RecipeEditForm from "./pages/recipes/RecipeEditForm";
 import ProfilePage from "./pages/profiles/ProfilePage";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
+import UsernameForm from "./pages/profiles/UsernameForm";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -63,6 +64,11 @@ function App() {
             exact
             path="/profiles/:id/edit"
             render={() => <ProfileEditForm />}
+          />
+          <Route
+            exact
+            path="/profiles/:id/edit/username"
+            render={() => <UsernameForm />}
           />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>

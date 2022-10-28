@@ -7,8 +7,9 @@ import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
+import Container from "react-bootstrap/Container";
 
-import { axiosReq, axiosRes } from "../../api/axiosDefaults";
+import { axiosReq } from "../../api/axiosDefaults";
 import {
   useCurrentUser,
   useSetCurrentUser,
@@ -17,11 +18,8 @@ import {
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import avatarStyles from "../../styles/Avatar.module.css";
-import { Container } from "react-bootstrap";
 
 // This code is based on the Code Institute's walkthrough project and modified for my project
-
-
 
 const ProfileEditForm = () => {
   const currentUser = useCurrentUser();
@@ -34,8 +32,6 @@ const ProfileEditForm = () => {
     image: "",
   });
   const { image } = profileData;
-  const [username, setUsername] = useState("");
-
 
   const [errors, setErrors] = useState({});
 
@@ -47,7 +43,6 @@ const ProfileEditForm = () => {
           const { image } = data;
           setProfileData({ image });
         } catch (err) {
-          console.log(err);
           history.push("/");
         }
       } else {
@@ -68,54 +63,15 @@ const ProfileEditForm = () => {
 
     try {
       const { data } = await axiosReq.put(`/profiles/${id}/`, formData);
-      await axiosRes.put("/dj-rest-auth/user/", {
-        username,
-      });
-      setCurrentUser((prevUser) => ({
-        ...prevUser,
+      setCurrentUser((currentUser) => ({
+        ...currentUser,
         profile_image: data.image,
-        username,
       }));
       history.goBack();
     } catch (err) {
-      console.log(err);
       setErrors(err.response?.data);
     }
   };
-
-
-  useEffect(() => {
-    if (currentUser?.profile_id?.toString() === id) {
-      setUsername(currentUser.username);
-    } else {
-      history.push("/");
-    }
-  }, [currentUser, history, id]);
-
-  const textFields = (
-    <>
-      <Form.Label>Change username</Form.Label>
-      <Form.Control
-        className={`${appStyles.Input} mb-3`}
-        placeholder="username"
-        type="text"
-        value={username}
-        onChange={(event) => setUsername(event.target.value)}
-      />
-      {errors?.username?.map((message, idx) => (
-        <Alert key={idx} variant="warning">
-          {message}
-        </Alert>
-      ))}
-      <Button className={btnStyles.Edit} onClick={() => history.goBack()}>
-        cancel
-      </Button>
-
-      <Button className={btnStyles.Edit} type="submit">
-        save
-      </Button>
-    </>
-  );
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -164,7 +120,16 @@ const ProfileEditForm = () => {
                 }}
               />
               <br />
-              {textFields}
+              <Button
+                className={btnStyles.Edit}
+                onClick={() => history.goBack()}
+              >
+                cancel
+              </Button>
+
+              <Button className={btnStyles.Edit} type="submit">
+                save
+              </Button>
             </Form.Group>
           </Container>
         </Col>
