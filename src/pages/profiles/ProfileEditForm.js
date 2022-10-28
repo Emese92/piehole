@@ -21,6 +21,8 @@ import { Container } from "react-bootstrap";
 
 // This code is based on the Code Institute's walkthrough project and modified for my project
 
+
+
 const ProfileEditForm = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
@@ -29,10 +31,11 @@ const ProfileEditForm = () => {
   const imageFile = useRef();
 
   const [profileData, setProfileData] = useState({
-    name: "",
     image: "",
   });
-  const { name, image } = profileData;
+  const { image } = profileData;
+  const [username, setUsername] = useState("");
+
 
   const [errors, setErrors] = useState({});
 
@@ -41,8 +44,8 @@ const ProfileEditForm = () => {
       if (currentUser?.profile_id?.toString() === id) {
         try {
           const { data } = await axiosReq.get(`/profiles/${id}/`);
-          const { name, image } = data;
-          setProfileData({ name, image });
+          const { image } = data;
+          setProfileData({ image });
         } catch (err) {
           console.log(err);
           history.push("/");
@@ -58,7 +61,6 @@ const ProfileEditForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append("name", name);
 
     if (imageFile?.current?.files[0]) {
       formData.append("image", imageFile?.current?.files[0]);
@@ -69,8 +71,8 @@ const ProfileEditForm = () => {
       await axiosRes.put("/dj-rest-auth/user/", {
         username,
       });
-      setCurrentUser((currentUser) => ({
-        ...currentUser,
+      setCurrentUser((prevUser) => ({
+        ...prevUser,
         profile_image: data.image,
         username,
       }));
@@ -81,7 +83,7 @@ const ProfileEditForm = () => {
     }
   };
 
-  const [username, setUsername] = useState("");
+
   useEffect(() => {
     if (currentUser?.profile_id?.toString() === id) {
       setUsername(currentUser.username);
