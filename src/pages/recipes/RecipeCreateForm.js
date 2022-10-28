@@ -1,14 +1,12 @@
 import React, { useRef, useState } from "react";
 
-import {
-  Col,
-  Row,
-  Card,
-  Form,
-  Button,
-  Container,
-  Alert,
-} from "react-bootstrap";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Card from "react-bootstrap/Card";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Alert from "react-bootstrap/Alert";
 
 import styles from "../../styles/RecipeCreateEditForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
@@ -67,7 +65,7 @@ function RecipeCreateForm() {
       const { data } = await axiosReq.post("/recipes/", formData);
       history.push(`/recipes/${data.id}`);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }

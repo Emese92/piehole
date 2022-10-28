@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Col, Row, Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import { axiosReq } from "../../api/axiosDefaults";
 import InfiniteScroll from "react-infinite-scroll-component";
+
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
+
+import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
 import { fetchMoreData } from "../..//utils/Utils.js";
 import Recipe from "./Recipe";
@@ -28,7 +32,7 @@ function RecipePage() {
         setRecipe({ results: [recipe] });
         setComments(comments);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
     handleMount();

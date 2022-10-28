@@ -3,10 +3,12 @@ import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+import Card from "react-bootstrap/Card";
+import Image from "react-bootstrap/Image";
+
 import Asset from "../../components/Asset";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
-import { Card, Image } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Recipe from "../recipes/Recipe";
 import { fetchMoreData } from "../../utils/Utils";
@@ -33,7 +35,7 @@ function ProfilePage() {
         setProfilePosts(profilePosts);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
     handleMount();

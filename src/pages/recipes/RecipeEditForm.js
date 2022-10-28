@@ -1,19 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  Col,
-  Row,
-  Card,
-  Form,
-  Button,
-  Container,
-  Alert,
-} from "react-bootstrap";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Card from "react-bootstrap/Card";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Alert from "react-bootstrap/Alert";
+
 import styles from "../../styles/RecipeCreateEditForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+
 import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+
 
 function RecipeEditForm(props) {
   const [errors, setErrors] = useState({});
@@ -57,7 +59,7 @@ function RecipeEditForm(props) {
             })
           : history.push("/");
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
     handleMount();
@@ -97,7 +99,7 @@ function RecipeEditForm(props) {
       await axiosReq.put(`/recipes/${id}/`, formData);
       history.push(`/recipes/${id}`);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }

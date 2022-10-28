@@ -49,6 +49,7 @@ const UsernameForm = () => {
       }));
       history.goBack();
     } catch (err) {
+      // console.log(err)
       setErrors(err.response?.data);
     }
   };
@@ -56,12 +57,12 @@ const UsernameForm = () => {
   return (
     <Row>
       <Col className="py-2 mx-auto text-center">
-        <Container className={appStyles.Content}>
+        <Container className={appStyles.Content} style={{ maxWidth: "600px" }}>
           <Form onSubmit={handleSubmit} className="my-2">
             <Form.Group>
               <Form.Label>Change username</Form.Label>
               <Form.Control
-              className={`${appStyles.Input} mb-3`}
+                className={`${appStyles.Input} mb-3`}
                 placeholder="username"
                 type="text"
                 value={username}
@@ -73,16 +74,10 @@ const UsernameForm = () => {
                 {message}
               </Alert>
             ))}
-            <Button
-              className={btnStyles.Edit}
-              onClick={() => history.goBack()}
-            >
+            <Button className={btnStyles.Edit} onClick={() => history.goBack()}>
               cancel
             </Button>
-            <Button
-              className={btnStyles.Edit}
-              type="submit"
-            >
+            <Button className={btnStyles.Edit} type="submit">
               save
             </Button>
           </Form>

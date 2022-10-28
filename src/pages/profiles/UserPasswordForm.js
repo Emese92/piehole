@@ -48,20 +48,20 @@ const UserPasswordForm = () => {
       await axiosRes.post("/dj-rest-auth/password/change/", userData);
       history.goBack();
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       setErrors(err.response?.data);
     }
   };
 
   return (
     <Row>
-      <Col className="py-2 mx-auto text-center"  >
+      <Col className="py-2 mx-auto text-center">
         <Container className={appStyles.Content} style={{ maxWidth: "600px" }}>
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit} className="my-2">
             <Form.Group>
               <Form.Label>New password</Form.Label>
               <Form.Control
-                className={appStyles.Input}
+                className={`${appStyles.Input} mb-3`}
                 placeholder="new password"
                 type="password"
                 value={new_password1}
@@ -77,7 +77,7 @@ const UserPasswordForm = () => {
             <Form.Group>
               <Form.Label>Confirm password</Form.Label>
               <Form.Control
-                className={appStyles.Input}
+                className={`${appStyles.Input} mb-3`}
                 placeholder="confirm new password"
                 type="password"
                 value={new_password2}
