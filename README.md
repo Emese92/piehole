@@ -1,6 +1,6 @@
 # Piehole
 
-This is a Recipe sharing website. Users can search and find recipes they want. They can create a profile and add their recipes, like and save others, and comment under posts.
+This is a recipe sharing website. Users can search and find recipes they want. They can create a profile and add their recipes, like and save others', and comment under posts.
 
 The deployed link can be found [here](https://piehole-react.herokuapp.com/)
 
@@ -44,7 +44,7 @@ The main page is accessible to everyone. Users can see recipes, starting with th
 ### Profile Page:
 
 It has a container with the profile owner's picture, name, and the number of posts. Under that, the user can find all the posts the profile user has posted.
-If the user is the profile owner, then it has also access to the three dots when clicked, There is a possibility to Add a picture, change the username, or change the password.
+If the user is the profile owner, then it has also access to the three dots when clicked. There is a possibility to add a picture, change the username, or change the password.
 
 ![ProfilePage](src/assets/profile-page.png)
 
@@ -148,7 +148,10 @@ There are no console errors present other than 401 unauthorized when not signed 
 I have tested the website on multiple devices (phone, laptop, and desktop).
 
 ### Validator testing
+
 -[CSS Validator](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fpiehole-react.herokuapp.com%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=sv)-Passed
+
+
 -[HTML Validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fpiehole-react.herokuapp.com%2F)-Passed
 
 
@@ -172,6 +175,8 @@ I didn't address these due to lack of time
 - I had some misspelling issues - they all should be fixed now.
 
 - The ProfileEditForm.js page was originally together with the UsernameForm.js, it worked with some issues with the username needing to be changed to submit it correctly - Tutor support suggested that I separate them so now they work fine.
+
+- EsLint caused errors that dind't let me deploy my project - I had to delete EsLint and reinstall package.json
 
 ## Deployment
 
