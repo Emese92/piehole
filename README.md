@@ -33,33 +33,33 @@ The link to the backend is [here](https://github.com/Emese92/Piehole-drf)
 Accessible from every page. It has a responsive logo that takes the user back to the main page. On the left-hand side has a home, sign in and sign up, button or access to bookmarked posts, Add a new recipe, Profile page, or sign out logo according to authentication. The logos are clear to understand but they also have a descriptive message if hovered over. It has a collapsible navbar on smaller screens.
 
 
-![MainPage](src/assets/main-page.png)
+
 
 ### Main page:
 
 The main page is accessible to everyone. Users can see recipes, starting with the most popular one on the top and by created date under that. The main page has an infinite scroll so users don't need to click anywhere to get to the next page. It also has a search bar, users can search for ingredients, titles, or usernames. The recipes are card elements that have a big picture, on the bottom is the title of the recipe and on top is the user who created it, which takes the user to the creator's profile page, the save and like options, and the comments link that takes the user to the comments section. likes and comments also have a counter next to them.
 
-
-![ProfilePage](src/assets/profile-page.png)
+![MainPage](src/assets/main-page.png)
 
 ### Profile Page:
 
 It has a container with the profile owner's picture, name, and the number of posts. Under that, the user can find all the posts the profile user has posted.
 If the user is the profile owner, then it has also access to the three dots when clicked, There is a possibility to Add a picture, change the username, or change the password.
 
-![Comments](src/assets/comments.png)
+![ProfilePage](src/assets/profile-page.png)
 
 ### Recipe page:
 
 The recipe page is a nice card element with The recipe owner's name and avatar, the save and like options, and the comments counter.
 It includes a full-width picture, the time to make it, the serving size, the ingredients, and the steps to make it. Right under the card the user can leave a comment and read what others commented. The comments also have the user's avatars and, name and how long ago the comment was created. The comment owner can edit and delete their comments.
 
-
-![Signin](src/assets/signin.png)
+![Comments](src/assets/comments.png)
 
 ### Login, Sign Up:
 
 They are both similar-looking dark and orange containers with the possibility of creating an account or logging in.
+
+![Signin](src/assets/signin.png)
 
 ### Bookmarks:
 
