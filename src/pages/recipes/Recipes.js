@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import InfiniteScroll from "react-infinite-scroll-component";
 
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 
-import { axiosReq } from "../../api/axiosDefaults";
 import Recipe from "./Recipe";
+
+import Asset from "../../components/Asset";
+import { useLocation } from "react-router";
+
 import styles from "../../styles/Recipes.module.css";
 import NoResults from "../../assets/no-results.gif";
-import Asset from "../../components/Asset";
+import { axiosReq } from "../../api/axiosDefaults";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/Utils";
 import PopularRecipes from "./PopularRecipes";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Media } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { axiosRes } from "../../api/axiosDefaults";
+import { axiosReq } from "../../api/axiosDefaults";
 import Avatar from "../../components/Avatar";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -22,11 +22,14 @@ const Comment = (props) => {
 
   const [showEditForm, setShowEditForm] = useState(false);
   const currentUser = useCurrentUser();
-  const isOwner = currentUser.username === owner;
+  let isOwner;
+  if (currentUser) {
+    isOwner = currentUser.username === owner;
+  }
 
   const handleDelete = async () => {
     try {
-      await axiosRes.delete(`/comments/${id}/`);
+      await axiosReq.delete(`/comments/${id}/`);
       setRecipe((prevRecipe) => ({
         ...prevRecipe,
         results: [

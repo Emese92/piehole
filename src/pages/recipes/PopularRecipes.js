@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router";
 import { Container } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
 import recipeStyles from "../../styles/Recipes.module.css";
@@ -6,6 +7,7 @@ import Recipe from "./Recipe";
 
 const PopularRecipes = () => {
   const [popularRecipes, setPopularRecipes] = useState({ results: [] });
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const handleMount = async () => {
@@ -13,11 +15,11 @@ const PopularRecipes = () => {
         const { data } = await axiosReq.get(`/recipes/?ordering=-likes_count`);
         setPopularRecipes(data);
       } catch (err) {
-        // console.log(err);
+        console.log(err);
       }
     };
     handleMount();
-  }, []);
+  }, [pathname]);
 
   return (
     <Container className={`${recipeStyles.Popular} rounded-3`}>

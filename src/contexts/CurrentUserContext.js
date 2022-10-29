@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { axiosReq, axiosRes } from "../api/axiosDefaults";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router";
 import { removeTokenTimestamp, shouldRefreshToken } from "../utils/Utils";
 
 // This code is from the code Institute's walkthrough project
@@ -30,7 +30,7 @@ export const CurrentUserProvider = ({ children }) => {
   }, []);
 
   useMemo(() => {
-    axiosReq.interceptors.response.use(
+    axiosReq.interceptors.request.use(
       async (config) => {
         if (shouldRefreshToken()) {
           try {
@@ -42,7 +42,7 @@ export const CurrentUserProvider = ({ children }) => {
               }
               return null;
             });
-            removeTokenTimestamp()
+            removeTokenTimestamp();
             return config;
           }
         }
@@ -66,7 +66,7 @@ export const CurrentUserProvider = ({ children }) => {
               }
               return null;
             });
-            removeTokenTimestamp()
+            removeTokenTimestamp();
           }
           return axios(err.config);
         }

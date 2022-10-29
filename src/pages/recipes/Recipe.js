@@ -1,6 +1,4 @@
 import React from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { Link } from "react-router-dom";
 
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -8,7 +6,7 @@ import Card from "react-bootstrap/Card";
 import Media from "react-bootstrap/Media";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-
+import { Link, useHistory } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
 import Avatar from "../../components/Avatar";
 import { MoreDropdown } from "../../components/MoreDropdown";
@@ -46,7 +44,7 @@ const Recipe = (props) => {
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/recipes/${id}/`);
-      history.goBack();
+      history.push('/');
     } catch (err) {
       // console.log(err);
     }

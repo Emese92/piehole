@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import InfiniteScroll from "react-infinite-scroll-component";
 
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
+import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
-import Asset from "../../components/Asset";
-import { fetchMoreData } from "../..//utils/Utils.js";
-import Recipe from "./Recipe";
+import Comment from "../comments/Comment";
+
 import CommentCreateForm from "../comments/CommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import Comment from "../comments/Comment";
+
+import InfiniteScroll from "react-infinite-scroll-component";
+import Asset from "../../components/Asset";
+import { fetchMoreData } from "../../utils/Utils";
+import Recipe from "./Recipe";
+
 
 function RecipePage() {
   const { id } = useParams();
@@ -25,11 +28,11 @@ function RecipePage() {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const [{ data: recipe }, { data: comments }] = await Promise.all([
+        const [{data: recipe}, {data: comments}] = await Promise.all([
           axiosReq.get(`/recipes/${id}`),
           axiosReq.get(`/comments/?recipe=${id}`),
         ]);
-        setRecipe({ results: [recipe] });
+        setRecipe({results: [recipe]});
         setComments(comments);
       } catch (err) {
         // console.log(err);
@@ -52,7 +55,7 @@ function RecipePage() {
               setComments={setComments}
             />
           ) : comments.results.length ? (
-            "Comments"
+            <div className="text-center mt-3">Comments</div>
           ) : null}
           {comments.results.length ? (
             <InfiniteScroll
