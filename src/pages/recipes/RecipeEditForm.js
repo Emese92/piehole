@@ -17,7 +17,7 @@ import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
 
-function RecipeEditForm(props) {
+function RecipeEditForm() {
   const [errors, setErrors] = useState({});
 
   const [postData, setPostData] = useState({

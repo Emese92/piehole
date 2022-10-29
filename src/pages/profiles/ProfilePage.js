@@ -71,6 +71,7 @@ function ProfilePage() {
       <hr />
       {profilePosts.results.length ? (
         <InfiniteScroll
+          // eslint-disable-next-line react/no-children-prop
           children={profilePosts.results.map((post) => (
             <Recipe key={post.id} {...post} setRecipes={setProfilePosts} />
           ))}

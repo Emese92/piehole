@@ -25,9 +25,12 @@ test("renders link to the user profile for logged in user", async () => {
   const profileAvatar = await screen.findByTestId("profile");
   const bookmarks = await screen.findByTestId("bookmarks");
   const addNewRecipe = await screen.findByTestId("add-new-recipe");
+  const signout = await screen.findByTestId("sign-out");
   expect(profileAvatar).toBeInTheDocument();
   expect(bookmarks).toBeInTheDocument();
   expect(addNewRecipe).toBeInTheDocument();
+  expect(signout).toBeInTheDocument();
+
 });
 
 test("renders Sign in and Sign up buttons again on log out", async () => {
