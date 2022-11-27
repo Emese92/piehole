@@ -1,6 +1,6 @@
 import { rest } from "msw";
 
-const baseURL = "https://piehole-drf-api.herokuapp.com/";
+const baseURL = "https://piehole-drf.onrender.com";
 
 export const handlers = [
   rest.get(`${baseURL}dj-rest-auth/user/`, (req, res, ctx) => {
