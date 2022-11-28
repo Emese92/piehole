@@ -2,9 +2,9 @@
 
 This is a recipe sharing website. Users can search and find recipes they want. They can create a profile and add their recipes, like and save others', and comment under posts.
 
-The deployed link can be found [here](https://piehole-react.herokuapp.com/)
+The deployed link can be found [here](https://piehole.onrender.com)
 
-The link to the backend is [here](https://github.com/Emese92/Piehole-drf)
+The link to the backend is [here](https://piehole-drf.onrender.com)
 
 (To open links in a new tab, hold 'Ctrl' (or '⌘' on Apple devices) as you click!)
 
